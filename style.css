@@ -1,0 +1,47 @@
+html{
+    margin:0;
+    padding:0;
+    background: #f8f3df url(bg.jpg) repeat-x;
+}
+
+body {
+	margin:0;
+    padding:0;
+}
+
+#inner {
+	width:800px;
+	margin:auto;
+}
+
+#message {
+	margin-top:30px;
+	padding:40px;
+    background: transparent url('white.png');
+	font-family: Georgia, Serif;
+	font-size:200%;
+	color: black;
+}
+
+#smaller {
+	font-size: 70%;
+	font-family: "Trebuchet MS",Helvetica, Sans-Serif;
+}
+
+#footer {
+	margin:0px;
+	padding:15px;
+	margin-bottom:30px;
+    background: transparent url('black.png');
+	font-family: "Trebuchet MS",Helvetica, Sans-Serif;
+	font-size:90%;
+	color: #FAE4B3;
+}
+
+a {
+	color:#fa5c4d;
+}
+
+textarea { 
+	width: 100%;
+} 
