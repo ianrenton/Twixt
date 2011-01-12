@@ -1,8 +1,14 @@
 <?php
 
+/* bit.ly API credentials. Must be valid to use API mode. */
+$BITLY_USERNAME = "";
+$BITLY_APIKEY = "";
+
+/* End of editable stuff */
+
 if ($_GET["tweet"] != '') {
     $url = renderTwixtPage(stripslashes($_GET["tweet"]));
-    apiShortenURL($url);
+    apiShortenURL($url, $BITLY_USERNAME, $BITLY_APIKEY);
 } else if ($_POST["tweet"] != '') {
     $url = renderTwixtPage(stripslashes($_POST["tweet"]));
     shortenURL($url);
@@ -41,12 +47,12 @@ function renderTwixtPage($msg) {
 }
 
 function shortenURL($url) {
-    header('Location: http://is.gd/create.php?longurl=' . substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url );
+    header('Location: http://bit.ly/' . urlencode(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url ));
 	die();
 }
 
-function apiShortenURL($url) {
-    header('Location: http://is.gd/api.php?longurl=' . substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url );
+function apiShortenURL($url, $BITLY_USERNAME, $BITLY_APIKEY) {
+    header('Location: http://api.bit.ly/v3/shorten?login=' . $BITLY_USERNAME . '&apiKey=' . $BITLY_APIKEY . '&format=txt&longUrl=' . urlencode(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url ));
 	die();
 }
 
