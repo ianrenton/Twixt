@@ -1,8 +1,8 @@
 <?php
 
 /* bit.ly API credentials. Must be valid to use API mode. */
-$BITLY_USERNAME = "";
-$BITLY_APIKEY = "";
+$BITLY_USERNAME = "tsukichama";
+$BITLY_APIKEY = "R_05ae1ae9ca78450fb8fbd4e71320991a";
 
 /* End of editable stuff */
 
@@ -17,10 +17,10 @@ if ($_GET["tweet"] != '') {
 	echo('	<div id="inner"><div id="message">');
 	echo('	<form action="index.php" method="post">');
 	echo('	<textarea rows="10" cols="90" name="tweet"></textarea> ');
-	echo('	<p align="right"><input type="submit" value="Twixt!"/></p>');
-	echo('	<p style="font-size:50%"><a href="http://www.onlydreaming.net/software/twixt">About Twixt</a></p>');
+	echo('	<div id="button"><input type="submit" value="Twixt!"/></div>');
 	echo('	</form>');
-	echo('	</div></div>');
+	echo('	</div><div id="footer"><a href="http://www.onlydreaming.net/software/twixt">About Twixt</a></div>');
+	echo('	</div>');
 	echo('</body></html>');
 }
 
@@ -47,7 +47,7 @@ function renderTwixtPage($msg) {
 }
 
 function shortenURL($url) {
-    header('Location: http://bit.ly/' . urlencode(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url ));
+    header('Location: http://bit.ly/' . substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url );
 	die();
 }
 
