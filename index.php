@@ -103,8 +103,8 @@ function sanitise($string) {
 function parseLinks($html) {
 	$html = preg_replace('/\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i', "<a href=\"\\0\">[link]</a>", $html);
 	$html = preg_replace('/^d\s(\w+)/', 'd <a href="http://www.twitter.com/\1">\1</a>', $html);
-	$html = preg_replace('/(^|\s)@(\w+)/', '\1<a href="http://www.twitter.com/\2">@\2</a>', $html);
-	$html = preg_replace('/(^|\s)#(\w+)/', '\1<a href="http://search.twitter.com/search?q=%23\2">#\2</a>', $html);
+	$html = preg_replace('/(^|\W)@(\w+)/', '\1<a href="http://www.twitter.com/\2">@\2</a>', $html);
+	$html = preg_replace('/(^|[^\&\w])#(\w+)/', '\1<a href="http://search.twitter.com/search?q=%23\2">#\2</a>', $html);
 	return $html;
 }
 
