@@ -1,29 +1,38 @@
 <?php
+/** Twixt v1.1 - 3rd March 2013
+    a pastebin for Twitter
+    by Ian Renton
+    Freely released into the public domain without licence.
+    No warranty, etc etc.
+    Free server at http://twixt.successwhale.com
+    Code at https://github.com/tsuki/twixt
+    Homepage at http://software.ianrenton.com/twixt
+    Share and enjoy. */
 
-/* bit.ly API credentials. Must be valid to use API mode. */
-$BITLY_USERNAME = "tsukichama";
-$BITLY_APIKEY = "R_05ae1ae9ca78450fb8fbd4e71320991a";
-
-/* End of editable stuff */
-
+// If we have a GET, we're being used via the API (http://blah/?tweet=xyz)
 if ($_GET["tweet"] != '') {
     $url = renderTwixtPage(stripslashes($_GET["tweet"]));
-    apiShortenURL($url, $BITLY_USERNAME, $BITLY_APIKEY);
-} else if ($_POST["tweet"] != '') {
+    apiShortenURL($url);
+}
+// If we have a POST, someone used the web page frontend
+else if ($_POST["tweet"] != '') {
     $url = renderTwixtPage(stripslashes($_POST["tweet"]));
     shortenURL($url);
-} else {
+}
+// If we have neither, render the web page frontent
+else {
 	echo('<html><head><title>Twixt</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link type="text/css" rel="stylesheet" media="all" href="style.css" /></head><body>');
 	echo('	<div id="inner"><div id="message">');
 	echo('	<form action="index.php" method="post">');
 	echo('	<textarea rows="10" cols="90" name="tweet"></textarea> ');
 	echo('	<div id="button"><input type="submit" value="Twixt!"/></div>');
 	echo('	</form>');
-	echo('	</div><div id="footer"><a href="http://www.onlydreaming.net/software/twixt">About Twixt</a></div>');
+	echo('	</div><div id="footer"><a href="http://software.ianrenton.com/twixt">About Twixt</a></div>');
 	echo('	</div>');
 	echo('</body></html>');
 }
 
+// Render a Twixted message for saving to a file
 function renderTwixtPage($msg) {
     $PRE_MSG = '<html><head><title>Twixt Message</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link type="text/css" rel="stylesheet" media="all" href="style.css" /></head><body><div id="inner"><div id="message"><p>';
 	$POST_MSG_1 = '</div><div id="footer">';
@@ -32,7 +41,7 @@ function renderTwixtPage($msg) {
 	$numchars = strlen($msg);
 	$numtweets = ceil($numchars/140);
 
-	$footer = 'This ' . $numchars . '-character message would have taken ' . $numtweets . ' tweets!<br>Your sanity was restored by <a href="http://www.onlydreaming.net/software/twixt">Twixt</a>.';
+	$footer = 'This ' . $numchars . '-character message would have taken ' . $numtweets . ' tweets!<br>Your sanity was restored by <a href="http://software.ianrenton.com/twixt">Twixt</a>.';
 
 	$nextfile = getNextNumber() . ".htm";
 	$file = fopen($nextfile, 'w');
@@ -46,16 +55,19 @@ function renderTwixtPage($msg) {
     return $nextfile;
 }
 
+// Shorten with is.gd, returning the web page that lets the user copy-paste the result
 function shortenURL($url) {
-    header('Location: http://bit.ly/' . substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url );
+    header('Location: http://is.gd/create.php?url=' . urlencode(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1)) . $url );
 	die();
 }
 
-function apiShortenURL($url, $BITLY_USERNAME, $BITLY_APIKEY) {
-    header('Location: http://api.bit.ly/v3/shorten?login=' . $BITLY_USERNAME . '&apiKey=' . $BITLY_APIKEY . '&format=txt&longUrl=' . urlencode(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url ));
+// Shorten with is.gd, returning just the URL on its own to push to a service using Twixt's API
+function apiShortenURL($url) {
+    header('Location: http://is.gd/create.php?format=simple&url=' . urlencode(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url ));
 	die();
 }
 
+// Gets the next available file number. This is pretty horrible and collisions are quite possible
 function getNextNumber() {
     $dir = opendir('.');
     $max = 0;
