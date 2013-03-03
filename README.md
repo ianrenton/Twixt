@@ -26,7 +26,7 @@ Twixt also provides an API for use by applications such as my own SuccessWhale.
 To use it, simply provide it with a properly URLEncoded “tweet” argument, for
 example:
 
-http://twixt.successwhale.com/index.php?tweet=Hello%20World!
+http://twixt.successwhale.com/index.php?tweet=Hello%20World
 
 Twixt will return the text-format output page of is.gd's “shorten” API, which
 will be either an HTTP 200 OK containing the shortened URL, or an HTTP 500 
