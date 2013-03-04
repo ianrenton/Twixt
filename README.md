@@ -40,8 +40,3 @@ Twixt is currently at version 1.1.
 Twixt is mature, released software, and as far as I know there are no major bugs
 that affect it. If you find any bugs or would like to request any new features,
 please add an issue on GitHub.
-
-Licence
-=======
-
-Twixt is freely released into the Public Domain with no licence or warranty. 
