@@ -26,16 +26,20 @@ Twixt also provides an API for use by applications such as my own SuccessWhale.
 To use it, simply provide it with a properly URLEncoded “tweet” argument, for
 example:
 
-http://twixt.successwhale.com/index.php?tweet=Hello%20World
+`http://twixt.successwhale.com/index.php?tweet=Hello%20World`
 
-Twixt will return the text-format output page of is.gd's “shorten” API, which
-will be either an HTTP 200 OK containing the shortened URL, or an HTTP 500 
-Internal Server Error containing the error message.
+Twixt will return an HTTP 302 redicrect to the text-format output page of is.gd's “shorten” API, which will be either an HTTP 200 OK containing the shortened URL, or an HTTP 500 Internal Server Error containing the error message.
+
+If you prefer not to use is.gd, you can also supply the `raw` parameter with value `true`, like so:
+
+`http://twixt.successwhale.com/index.php?tweet=Hello%20World&raw=true`
+
+This will return either an HTTP 200 OK containing the URL, or an HTTP 500 Internal Server Error containing the error message. This URL will not be shortened, so it will be based on the path on which you are running twixt, e.g. `http://twixt.successwhale.com/1.htm`. You can then pipe this through a shortening service of your own, if you like.
 
 Status
 ======
 
-Twixt is currently at version 1.1.
+Twixt is currently at version 1.2.
 
 Twixt is mature, released software, and as far as I know there are no major bugs
 that affect it. If you find any bugs or would like to request any new features,
