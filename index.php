@@ -39,7 +39,7 @@ else {
 // Render a Twixted message for saving to a file
 function renderTwixtPage($msg) {
     $PRE_MSG = '<html><head><title>Twixt Message</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link type="text/css" rel="stylesheet" media="all" href="style.css" /></head><body><div id="inner"><div id="message"><p>';
-	$POST_MSG_1 = '</div><div id="footer">';
+	$POST_MSG_1 = '</p></div><div id="footer">';
 	$POST_MSG_2 = '</div></div></body></html>';
 
 	$numchars = strlen($msg);
