@@ -1,5 +1,5 @@
 <?php
-/** Twixt v1.1 - 3rd March 2013
+/** Twixt v1.2 - 13th April 2013
     a pastebin for Twitter
     by Ian Renton
     Freely released into the public domain without licence.
@@ -12,7 +12,11 @@
 // If we have a GET, we're being used via the API (http://blah/?tweet=xyz)
 if ($_GET["tweet"] != '') {
     $url = renderTwixtPage(stripslashes($_GET["tweet"]));
-    apiShortenURL($url);
+    if ($_GET["raw"] == true) {
+        echo(substr(curPageURL(), 0, strrpos(curPageURL(),"/")+1) . $url);
+    } else {
+        apiShortenURL($url);
+    }
 }
 // If we have a POST, someone used the web page frontend
 else if ($_POST["tweet"] != '') {
