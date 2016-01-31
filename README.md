@@ -12,10 +12,10 @@ putting more than 140 characters up somewhere on the internet that I can link fr
 a single tweet. Thus, I created this simple PHP script. Give it a block of text,
 and it'll generate you a unique web page and grab you an is.gd short URL for it.
 
-You can try it out at http://twixt.successwhale.com, or download and run it on
+You can try it out at [http://twixt.successwhale.com](http://twixt.successwhale.com), or download and run it on
 your own web server.
 
-If you'd like to run this from your own server, you can get the source code here on
+If you'd like to run this from your own server, you can get the source code from
 GitHub. To run it, you'll need a web server that can run PHP, and the directory the
 script sits in must be writable by whatever user you run your web server as.
 
