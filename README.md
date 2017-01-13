@@ -12,7 +12,7 @@ putting more than 140 characters up somewhere on the internet that I can link fr
 a single tweet. Thus, I created this simple PHP script. Give it a block of text,
 and it'll generate you a unique web page and grab you an is.gd short URL for it.
 
-It used to be integrated with SuccessWhale and run at http://twixt.successwhale.com, but has now been discontinued.
+It used to be integrated with SuccessWhale and run at http://twixt.successwhale.com, but has now been discontinued. The `gh-pages` branch of this repository is used to host a non-functional archive of the old pastes.
 
 If you'd like to run this from your own server, you can get the source code from
 GitHub. To run it, you'll need a web server that can run PHP, and the directory the
